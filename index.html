@@ -21,10 +21,6 @@
         <div class="container bg-color">
           <!-- Search Bar Section -->
           <div class="search-bar-section">
-            <select name="cars" id="cars" v-model="selectedValue">
-              <option value="today">Today</option>
-              <option value="next">Next</option>
-            </select>
             <input
               class="text-form"
               type="search"
@@ -32,6 +28,11 @@
               v-model="taskText"
               @keyup.enter="handleAdd"
             />
+            <input type="date" v-model="taskDate" @input="handleDateInput">
+            <select name="cars" id="cars" v-model="selectedValue">
+              <option value="today">Today</option>
+              <option value="next">Next</option>
+            </select>
             <input
               @click="handleAdd"
               class="btn-style"
@@ -71,8 +72,9 @@
                       />
 
                       <span :class="{'line-through': curTask.isDone}">
-                        {{curTask.text}}
+                        {{curTask.text}} {{curTask.date}}
                       </span>
+                      
                       <!-- <span class="editorial label">Editorial</span> -->
                     </div>
                     <button
@@ -112,7 +114,7 @@
                       />
 
                       <span :class="{'line-through': curTask.isDone}">
-                        {{curTask.text}}
+                        {{curTask.text}} {{curTask.date}}
                       </span>
                       <!-- <span class="editorial label">Editorial</span> -->
                     </div>
@@ -152,7 +154,7 @@
                       />
 
                       <span :class="{'line-through': curTask.isDone}">
-                        {{curTask.text}}
+                        {{curTask.text}} {{curTask.date}}
                       </span>
                       <!-- <span class="editorial label">Editorial</span> -->
                     </div>
