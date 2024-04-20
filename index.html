@@ -10,7 +10,6 @@
 
   <body>
     <div id="app">
-
       <!-- Header Section -->
       <header class="header bg-color">
         <img class="logo-header" src="img/logo.png" alt="" />
@@ -22,17 +21,23 @@
         <div class="container bg-color">
           <!-- Search Bar Section -->
           <div class="search-bar-section">
+            <select name="cars" id="cars" v-model="selectedValue">
+              <option value="today">Today</option>
+              <option value="next">Next</option>
+            </select>
             <input
               class="text-form"
               type="search"
               placeholder="es: Fare la spesa..."
               v-model="taskText"
+              @keyup.enter="handleAdd"
             />
-            <input @click="handleAdd" class="btn-style" type="button" value="Add Task" />
-            <select name="cars" id="cars" v-model="selectedValue">
-                <option value="today">Today</option>
-                <option value="next">Next</option>
-            </select>
+            <input
+              @click="handleAdd"
+              class="btn-style"
+              type="button"
+              value="Add Task"
+            />
           </div>
           <!-- /Search Bar Section -->
 
@@ -51,19 +56,30 @@
                 <!-- Innested List Section -->
                 <ul class="innested-list">
                   <!-- Innested Item Section -->
-                  <li class="innested-item" v-for="(curTask,index) in allTask[0].tasks">
-                    <div class="task-content" @click="curTask.isDone = !curTask.isDone">
+                  <li
+                    class="innested-item"
+                    v-for="(curTask,index) in allTask[0].tasks"
+                  >
+                    <div
+                      class="task-content"
+                      @click="curTask.isDone = !curTask.isDone"
+                    >
                       <img
                         class="task-icon"
                         :src="curTask.isDone ? curTask.stateImage = 'img/done.svg' : curTask.stateImage = 'img/not-done.svg'"
                         alt="done icon"
                       />
-                      
-                      <span :class="{'line-through': curTask.isDone}"> {{curTask.text}} </span>
+
+                      <span :class="{'line-through': curTask.isDone}">
+                        {{curTask.text}}
+                      </span>
                       <!-- <span class="editorial label">Editorial</span> -->
                     </div>
-                    <button @click="removeTask(index,allTask[0])" id="removeBtn">
-                        <img src="img/remove.png" alt="">
+                    <button
+                      @click="removeTask(index,allTask[0])"
+                      id="removeBtn"
+                    >
+                      <img src="img/remove.png" alt="" />
                     </button>
                   </li>
                   <!-- /Innested Item Section -->
@@ -81,24 +97,33 @@
 
                 <ul>
                   <!-- Innested Item Section -->
-                  <li class="innested-item" v-for="(curTask,index) in allTask[1].tasks">
-                    <div class="task-content" @click="curTask.isDone = !curTask.isDone">
+                  <li
+                    class="innested-item"
+                    v-for="(curTask,index) in allTask[1].tasks"
+                  >
+                    <div
+                      class="task-content"
+                      @click="curTask.isDone = !curTask.isDone"
+                    >
                       <img
                         class="task-icon"
                         :src="curTask.isDone ? curTask.stateImage = 'img/done.svg' : curTask.stateImage = 'img/not-done.svg'"
                         alt="done icon"
                       />
-                      
-                      <span :class="{'line-through': curTask.isDone}"> {{curTask.text}} </span>
+
+                      <span :class="{'line-through': curTask.isDone}">
+                        {{curTask.text}}
+                      </span>
                       <!-- <span class="editorial label">Editorial</span> -->
                     </div>
-                    <button @click="removeTask(index,allTask[1])" id="removeBtn">
-                        <img src="img/remove.png" alt="">
+                    <button
+                      @click="removeTask(index,allTask[1])"
+                      id="removeBtn"
+                    >
+                      <img src="img/remove.png" alt="" />
                     </button>
                   </li>
                   <!-- /Innested Item Section -->
-
-                  
                 </ul>
               </li>
               <!-- /Today Task -->
@@ -112,23 +137,33 @@
 
                 <ul>
                   <!-- Innested Item Section -->
-                  <li class="innested-item" v-for="(curTask,index) in allTask[2].tasks">
-                    <div class="task-content" @click="curTask.isDone = !curTask.isDone">
+                  <li
+                    class="innested-item"
+                    v-for="(curTask,index) in allTask[2].tasks"
+                  >
+                    <div
+                      class="task-content"
+                      @click="curTask.isDone = !curTask.isDone"
+                    >
                       <img
                         class="task-icon"
                         :src="curTask.isDone ? curTask.stateImage = 'img/done.svg' : curTask.stateImage = 'img/not-done.svg'"
                         alt="done icon"
                       />
-                      
-                      <span :class="{'line-through': curTask.isDone}"> {{curTask.text}} </span>
+
+                      <span :class="{'line-through': curTask.isDone}">
+                        {{curTask.text}}
+                      </span>
                       <!-- <span class="editorial label">Editorial</span> -->
                     </div>
-                    <button @click="removeTask(index,allTask[2])" id="removeBtn">
-                        <img src="img/remove.png" alt="">
+                    <button
+                      @click="removeTask(index,allTask[2])"
+                      id="removeBtn"
+                    >
+                      <img src="img/remove.png" alt="" />
                     </button>
                   </li>
                   <!-- /Innested Item Section -->
-
                 </ul>
               </li>
               <!-- /Next Days Task -->

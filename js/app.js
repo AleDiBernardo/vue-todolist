@@ -27,41 +27,13 @@ Vue.createApp({
         {
           name: "todayTask",
           tasks: [
-            {
-              text: "Completare la presentazione per il meeting di domani",
-              isDone: false,
-              stateImage: "img/done.svg",
-            },
-            {
-              text: "Fare la spesa per la cena stasera",
-              isDone: false,
-              stateImage: "img/done.svg",
-            },
-            {
-              text: "Scrivere una breve recensione del libro appena finito",
-              isDone: false,
-              stateImage: "img/done.svg",
-            },
+            
           ],
         },
         {
             name: "nextDaysTask",
             tasks: [
-              {
-                text: "Completare la presentazione per il meeting di domani",
-                isDone: false,
-                stateImage: "img/done.svg",
-              },
-              {
-                text: "Fare la spesa per la cena stasera",
-                isDone: false,
-                stateImage: "img/done.svg",
-              },
-              {
-                text: "Scrivere una breve recensione del libro appena finito",
-                isDone: false,
-                stateImage: "img/done.svg",
-              },
+              
             ],
           }
       ],
