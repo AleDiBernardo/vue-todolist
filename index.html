@@ -26,8 +26,13 @@
               class="text-form"
               type="search"
               placeholder="es: Fare la spesa..."
+              v-model="taskText"
             />
-            <input class="btn-style" type="button" value="Add Task" />
+            <input @click="handleAdd" class="btn-style" type="button" value="Add Task" />
+            <select name="cars" id="cars" v-model="selectedValue">
+                <option value="today">Today</option>
+                <option value="next">Next</option>
+            </select>
           </div>
           <!-- /Search Bar Section -->
 
@@ -46,7 +51,7 @@
                 <!-- Innested List Section -->
                 <ul class="innested-list">
                   <!-- Innested Item Section -->
-                  <li class="innested-item" v-for="(curTask,index) in prevTask">
+                  <li class="innested-item" v-for="(curTask,index) in allTask[0].tasks">
                     <div class="task-content" @click="curTask.isDone = !curTask.isDone">
                       <img
                         class="task-icon"
@@ -57,7 +62,7 @@
                       <span :class="{'line-through': curTask.isDone}"> {{curTask.text}} </span>
                       <!-- <span class="editorial label">Editorial</span> -->
                     </div>
-                    <button @click="removeTask(index)" id="removeBtn">
+                    <button @click="removeTask(index,allTask[0])" id="removeBtn">
                         <img src="img/remove.png" alt="">
                     </button>
                   </li>
@@ -76,60 +81,24 @@
 
                 <ul>
                   <!-- Innested Item Section -->
-                  <li class="innested-item">
-                    <div class="task-content line-through">
+                  <li class="innested-item" v-for="(curTask,index) in allTask[1].tasks">
+                    <div class="task-content" @click="curTask.isDone = !curTask.isDone">
                       <img
                         class="task-icon"
-                        src="img/done.svg"
+                        :src="curTask.isDone ? curTask.stateImage = 'img/done.svg' : curTask.stateImage = 'img/not-done.svg'"
                         alt="done icon"
                       />
-                      Recruiting blog post
-                      <span class="editorial label">Editorial</span>
+                      
+                      <span :class="{'line-through': curTask.isDone}"> {{curTask.text}} </span>
+                      <!-- <span class="editorial label">Editorial</span> -->
                     </div>
+                    <button @click="removeTask(index,allTask[1])" id="removeBtn">
+                        <img src="img/remove.png" alt="">
+                    </button>
                   </li>
                   <!-- /Innested Item Section -->
 
-                  <!-- Innested Item Section -->
-                  <li class="innested-item">
-                    <div class="task-content line-through">
-                      <img
-                        class="task-icon"
-                        src="img/done.svg"
-                        alt="done icon"
-                      />
-                      Mobile app launch
-                      <span class="q-one-goals label">Q1 Goals</span>
-                    </div>
-                  </li>
-                  <!-- /Innested Item Section -->
-
-                  <!-- Innested Item Section -->
-                  <li class="innested-item">
-                    <div class="task-content">
-                      <img
-                        class="task-icon"
-                        src="img/not-done.svg"
-                        alt="done icon"
-                      />
-                      Interview John H.
-                      <span class="recruiting label">Recruiting</span>
-                    </div>
-                  </li>
-                  <!-- /Innested Item Section -->
-
-                  <!-- Innested Item Section -->
-                  <li class="innested-item">
-                    <div class="task-content line-through">
-                      <img
-                        class="task-icon"
-                        src="img/done.svg"
-                        alt="done icon"
-                      />
-                      Summit update to mobile storefronts
-                      <span class="light-salmon label">Mobile</span>
-                    </div>
-                  </li>
-                  <!-- /Innested Item Section -->
+                  
                 </ul>
               </li>
               <!-- /Today Task -->
@@ -143,58 +112,23 @@
 
                 <ul>
                   <!-- Innested Item Section -->
-                  <li class="innested-item">
-                    <div class="task-content">
+                  <li class="innested-item" v-for="(curTask,index) in allTask[2].tasks">
+                    <div class="task-content" @click="curTask.isDone = !curTask.isDone">
                       <img
                         class="task-icon"
-                        src="img/not-done.svg"
+                        :src="curTask.isDone ? curTask.stateImage = 'img/done.svg' : curTask.stateImage = 'img/not-done.svg'"
                         alt="done icon"
                       />
-                      Schedule meeting with Alex
+                      
+                      <span :class="{'line-through': curTask.isDone}"> {{curTask.text}} </span>
+                      <!-- <span class="editorial label">Editorial</span> -->
                     </div>
+                    <button @click="removeTask(index,allTask[0])" id="removeBtn">
+                        <img src="img/remove.png" alt="">
+                    </button>
                   </li>
                   <!-- /Innested Item Section -->
 
-                  <!-- Innested Item Section -->
-                  <li class="innested-item">
-                    <div class="task-content line-through">
-                      <img
-                        class="task-icon"
-                        src="img/done.svg"
-                        alt="done icon"
-                      />
-                      Homepage refresh
-                      <span class="website label">Website</span>
-                    </div>
-                  </li>
-
-                  <!-- Innested Item Section -->
-                  <li class="innested-item">
-                    <div class="task-content line-through">
-                      <img
-                        class="task-icon"
-                        src="img/done.svg"
-                        alt="done icon"
-                      />
-                      Onboard new Sales team members
-                      <span class="sales label">Sales</span>
-                    </div>
-                  </li>
-                  <!-- /Innested Item Section -->
-
-                  <!-- Innested Item Section -->
-                  <li class="innested-item">
-                    <div class="task-content line-through">
-                      <img
-                        class="task-icon"
-                        src="img/done.svg"
-                        alt="done icon"
-                      />
-                      Review editorial calendar
-                      <span class="editorial label">Editorial</span>
-                    </div>
-                  </li>
-                  <!-- /Innested Item Section -->
                 </ul>
               </li>
               <!-- /Next Days Task -->
