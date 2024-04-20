@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Toboolist</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+
+      <!-- Header Section -->
+      <header class="header bg-color">
+        <img class="logo-header" src="img/logo.png" alt="" />
+      </header>
+      <!-- /Header Section -->
+
+      <!-- Main Section -->
+      <main class="main-section">
+        <div class="container bg-color">
+          <!-- Search Bar Section -->
+          <div class="search-bar-section">
+            <input
+              class="text-form"
+              type="search"
+              placeholder="es: Fare la spesa..."
+            />
+            <input class="btn-style" type="button" value="Add Task" />
+          </div>
+          <!-- /Search Bar Section -->
+
+          <hr class="hr-line" />
+
+          <!-- List Section -->
+          <div class="list-section">
+            <ul>
+              <!-- Previous Task -->
+              <li>
+                <!-- Task Title Section -->
+                <span class="arrow-icon">&#11166;</span>
+                <span class="task-section-font">Task Precedenti</span>
+                <!-- /Task Title Section -->
+
+                <!-- Innested List Section -->
+                <ul class="innested-list">
+                  <!-- Innested Item Section -->
+                  <li class="innested-item" v-for="(curTask,index) in prevTask">
+                    <div class="task-content" @click="curTask.isDone = !curTask.isDone">
+                      <img
+                        class="task-icon"
+                        :src="curTask.isDone ? curTask.stateImage = 'img/done.svg' : curTask.stateImage = 'img/not-done.svg'"
+                        alt="done icon"
+                      />
+                      
+                      <span :class="{'line-through': curTask.isDone}"> {{curTask.text}} </span>
+                      <!-- <span class="editorial label">Editorial</span> -->
+                    </div>
+                    <button @click="removeTask(index)" id="removeBtn">
+                        <img src="img/remove.png" alt="">
+                    </button>
+                  </li>
+                  <!-- /Innested Item Section -->
+                </ul>
+                <!-- /Innested List Section -->
+              </li>
+              <!-- /Previous Task -->
+
+              <!-- Today Task -->
+              <li>
+                <!-- Task Title Section -->
+                <span class="arrow-icon">&#11166;</span>
+                <span class="task-section-font">Oggi</span>
+                <!-- /Task Title Section -->
+
+                <ul>
+                  <!-- Innested Item Section -->
+                  <li class="innested-item">
+                    <div class="task-content line-through">
+                      <img
+                        class="task-icon"
+                        src="img/done.svg"
+                        alt="done icon"
+                      />
+                      Recruiting blog post
+                      <span class="editorial label">Editorial</span>
+                    </div>
+                  </li>
+                  <!-- /Innested Item Section -->
+
+                  <!-- Innested Item Section -->
+                  <li class="innested-item">
+                    <div class="task-content line-through">
+                      <img
+                        class="task-icon"
+                        src="img/done.svg"
+                        alt="done icon"
+                      />
+                      Mobile app launch
+                      <span class="q-one-goals label">Q1 Goals</span>
+                    </div>
+                  </li>
+                  <!-- /Innested Item Section -->
+
+                  <!-- Innested Item Section -->
+                  <li class="innested-item">
+                    <div class="task-content">
+                      <img
+                        class="task-icon"
+                        src="img/not-done.svg"
+                        alt="done icon"
+                      />
+                      Interview John H.
+                      <span class="recruiting label">Recruiting</span>
+                    </div>
+                  </li>
+                  <!-- /Innested Item Section -->
+
+                  <!-- Innested Item Section -->
+                  <li class="innested-item">
+                    <div class="task-content line-through">
+                      <img
+                        class="task-icon"
+                        src="img/done.svg"
+                        alt="done icon"
+                      />
+                      Summit update to mobile storefronts
+                      <span class="light-salmon label">Mobile</span>
+                    </div>
+                  </li>
+                  <!-- /Innested Item Section -->
+                </ul>
+              </li>
+              <!-- /Today Task -->
+
+              <!-- Next Days Task -->
+              <li>
+                <!-- Task Title Section -->
+                <span class="arrow-icon">&#11166;</span>
+                <span class="task-section-font">Prossimi Giorni</span>
+                <!-- /Task Title Section -->
+
+                <ul>
+                  <!-- Innested Item Section -->
+                  <li class="innested-item">
+                    <div class="task-content">
+                      <img
+                        class="task-icon"
+                        src="img/not-done.svg"
+                        alt="done icon"
+                      />
+                      Schedule meeting with Alex
+                    </div>
+                  </li>
+                  <!-- /Innested Item Section -->
+
+                  <!-- Innested Item Section -->
+                  <li class="innested-item">
+                    <div class="task-content line-through">
+                      <img
+                        class="task-icon"
+                        src="img/done.svg"
+                        alt="done icon"
+                      />
+                      Homepage refresh
+                      <span class="website label">Website</span>
+                    </div>
+                  </li>
+
+                  <!-- Innested Item Section -->
+                  <li class="innested-item">
+                    <div class="task-content line-through">
+                      <img
+                        class="task-icon"
+                        src="img/done.svg"
+                        alt="done icon"
+                      />
+                      Onboard new Sales team members
+                      <span class="sales label">Sales</span>
+                    </div>
+                  </li>
+                  <!-- /Innested Item Section -->
+
+                  <!-- Innested Item Section -->
+                  <li class="innested-item">
+                    <div class="task-content line-through">
+                      <img
+                        class="task-icon"
+                        src="img/done.svg"
+                        alt="done icon"
+                      />
+                      Review editorial calendar
+                      <span class="editorial label">Editorial</span>
+                    </div>
+                  </li>
+                  <!-- /Innested Item Section -->
+                </ul>
+              </li>
+              <!-- /Next Days Task -->
+            </ul>
+          </div>
+          <!-- /List Section -->
+        </div>
+      </main>
+      <!-- /Main Section -->
+    </div>
+
+    <!-- My Script -->
+    <script src="js/app.js"></script>
+  </body>
+</html>
